@@ -31,10 +31,6 @@ public class MecanumDrive extends Subsystem{
         rearLeftPower = leftsticky - rightstickx + leftstickx;
     }
 
-    public void stop(){
-        this.setVelocity(0,0,0);
-        this.update();
-    }
     @Override
     public void update(){
         frontLeftMotor.setPower(frontLeftPower);
