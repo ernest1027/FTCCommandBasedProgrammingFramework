@@ -1,4 +1,4 @@
-1/* Copyright (c) 2017 FIRST. All rights reserved.
+/* Copyright (c) 2017 FIRST. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -29,14 +29,10 @@
 
 package org.firstinspires.ftc.teamcode.opmodes.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -54,19 +50,15 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
 
-public class teleop extends OpMode
+public class Teleop extends OpMode
 {
-    // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
-    private MecanumDrive mecanumDrive;
+    private Robot robot;
+    private Control control;
 
     @Override
     public void init() {
-        telemetry.addData("Status", "Initialized");
-
-        //initialize subsytems
-        mecanumDrive = new MecanumDrive(hardwareMap);
-
+        robot = new Robot(hardwareMap);
+        control = new Control(this, robot);
         telemetry.addData("Status", "Initialized");
     }
 
@@ -76,22 +68,14 @@ public class teleop extends OpMode
 
     @Override
     public void start() {
-        runtime.reset();
+        robot.start();
     }
 
 
     @Override
     public void loop() {
-
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
-
-        mecanumDrive.setVelocity(drive, strafe, turn);
-        mecanumDrive.update();
-
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "drive (%.2f), turn (%.2f), strafe (%.2f)", drive, turn, strafe);
+        control.update();
+        robot.update();
     }
 
     /*
@@ -99,6 +83,7 @@ public class teleop extends OpMode
      */
     @Override
     public void stop() {
+        robot.stop();
     }
 
 }

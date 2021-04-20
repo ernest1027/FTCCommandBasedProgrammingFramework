@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-import org.firstinspires.ftc.teamcode.subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Robot;
 
 public class MoveWithColourSensor implements Command{
 

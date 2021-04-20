@@ -34,24 +34,13 @@ package org.firstinspires.ftc.teamcode.opmodes.auto;/* Copyright (c) 2017 FIRST.
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
-import android.app.Activity;
-import android.graphics.Color;
-import android.view.View;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.commands.Command;
 import org.firstinspires.ftc.teamcode.commands.MoveWithColourSensor;
 import org.firstinspires.ftc.teamcode.commands.MoveWithTime;
 import org.firstinspires.ftc.teamcode.commands.MoveWobbleGoalServo;
 import org.firstinspires.ftc.teamcode.commands.Sequential;
-import org.firstinspires.ftc.teamcode.subsystems.ColourSensor;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Robot;
 
 import java.util.ArrayList;
 
