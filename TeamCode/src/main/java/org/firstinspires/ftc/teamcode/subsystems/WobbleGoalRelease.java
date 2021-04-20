@@ -20,19 +20,4 @@ public class WobbleGoalRelease extends Subsystem{
     {
         this.position = position;
     }
-
-    public void togglePosition()
-    {
-        if(this.position <= 0.5)
-        {
-            setPosition(1);
-        }
-        else
-        {
-            setPosition(0);
-        }
-    }
-
-
-
 }
