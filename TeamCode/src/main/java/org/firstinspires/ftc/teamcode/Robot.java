@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.WobbleGoalRelease;
 
 import java.util.HashMap;
 
+//The Robot class contains all of the subsystems and the elapsed time object.
 public class Robot{
     public ElapsedTime runtime = new ElapsedTime();
     public ColourSensor colourSensor;
@@ -23,17 +24,19 @@ public class Robot{
         this.wobbleGoalRelease = new WobbleGoalRelease(map);
     }
 
+    //Run at the start of the op mode
     public void start(){
         runtime.reset();
     }
 
-    //Updates every subsystems
+    //Updates every subsystem. Should be run within inside a loop to regularly update the robot.
     public void update() {
         colourSensor.update();
         mecanumDrive.update();
         wobbleGoalRelease.update();
     }
 
+    //Run at the end of the op mode
     public void stop(){
         mecanumDrive.stop();
     }

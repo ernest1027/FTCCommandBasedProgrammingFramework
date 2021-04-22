@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 //A parallel command is a type of command that is used to run commands simultaneously, or in other words in parallel.
-//A sequential command can contain nested parallel commands, sequential commands or any other class that implements the command interface.
+//A parallel command can contain nested parallel commands, sequential commands or any other class that implements the command interface.
 public class Parallel implements Command{
     ArrayList<Command> commands;
     boolean[] completed;
@@ -12,7 +12,7 @@ public class Parallel implements Command{
     boolean stopped = false;
     int counter = 0;
 
-    //The list of commands stores the commands that will be run in order
+    //The list of commands stores the commands that will be run
     public Parallel(ArrayList<Command> commands)
     {
         this.commands = commands;
@@ -46,7 +46,6 @@ public class Parallel implements Command{
     /*
         The run function runs every command in the list if it has not already been completed.
         If the command is completed, the completed array is updated and the counter is incremented.
-        Runs the end function once completed
      */
     @Override
     public void run() {
@@ -71,6 +70,7 @@ public class Parallel implements Command{
 
     }
 
+    //Runs the stop function of each individual command
     @Override
     public void stop() {
         complete = true;
@@ -82,7 +82,6 @@ public class Parallel implements Command{
     }
     @Override
     public void reset() {
-        stop();
         complete = false;
         stopped = false;
         counter = 0;

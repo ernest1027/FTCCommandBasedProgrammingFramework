@@ -15,14 +15,9 @@ public class MoveWobbleGoalServoAndMoveWithTime implements Command{
         parallel = new Parallel(commands);
     }
     @Override
-    public boolean runLoop() {
-        return parallel.runLoop();
-    }
-    @Override
     public void start() {
         parallel.start();
     }
-
     @Override
     public void run() {
         parallel.run();
@@ -46,6 +41,11 @@ public class MoveWobbleGoalServoAndMoveWithTime implements Command{
     @Override
     public void reset() {
         parallel.reset();
+    }
+
+    @Override
+    public boolean runLoop() {
+        return parallel.runLoop();
     }
 
 }

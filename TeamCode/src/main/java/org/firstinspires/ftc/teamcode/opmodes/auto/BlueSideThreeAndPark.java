@@ -85,6 +85,6 @@ public class BlueSideThreeAndPark extends LinearOpMode {
         {
             mainSequential.run();
         }
-        mainSequential.end();
+        if(opModeIsActive())mainSequential.end();
     }
 }

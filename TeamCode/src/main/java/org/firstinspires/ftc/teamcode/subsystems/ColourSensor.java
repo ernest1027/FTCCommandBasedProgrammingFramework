@@ -28,6 +28,7 @@ public class ColourSensor extends Subsystem{
         View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
     }
 
+    //Update method for colour sensor
     @Override
     public void update() {
         Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -41,6 +42,7 @@ public class ColourSensor extends Subsystem{
         });
     }
 
+    //State getter method that returns RGB values as an integer between 0 and 255 inclusive
     public int[] getColours(){
         int[] values = new int[3];
         values[0] = sensorColor.red();

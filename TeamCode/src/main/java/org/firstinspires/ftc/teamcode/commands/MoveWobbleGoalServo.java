@@ -14,6 +14,37 @@ public class MoveWobbleGoalServo implements Command{
         this.delay = delay;
     }
     @Override
+    public void start() {
+        robot.wobbleGoalRelease.setPosition(position);
+        startingTime = robot.runtime.milliseconds();
+    }
+    @Override
+    public void run() {
+        robot.update();
+    }
+
+    @Override
+    public boolean isComplete() {
+        return complete = complete || startingTime+delay > robot.runtime.milliseconds();
+    }
+    @Override
+    public void end() {
+        stop();
+    }
+
+    @Override
+    public void stop() {
+        complete = true;
+        stopped = true;
+    }
+
+    @Override
+    public void reset() {
+        stop();
+        complete = false;
+        stopped = false;
+    }
+    @Override
     public boolean runLoop() {
         this.start();
         while(!this.isComplete())
@@ -25,36 +56,5 @@ public class MoveWobbleGoalServo implements Command{
             this.end();
         }
         return true;
-    }
-    @Override
-    public void start() {
-        robot.wobbleGoalRelease.setPosition(position);
-        startingTime = robot.runtime.milliseconds();
-    }
-
-    @Override
-    public void run() {
-        robot.update();
-    }
-    @Override
-    public boolean isComplete() {
-        return complete = complete || startingTime+delay > robot.runtime.milliseconds();
-    }
-
-    @Override
-    public void end() {
-        stop();
-    }
-
-    @Override
-    public void stop() {
-        complete = true;
-        stopped = true;
-    }
-    @Override
-    public void reset() {
-        stop();
-        complete = false;
-        stopped = false;
     }
 }

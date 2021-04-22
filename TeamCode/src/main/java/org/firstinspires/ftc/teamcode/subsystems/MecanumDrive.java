@@ -24,6 +24,7 @@ public class MecanumDrive extends Subsystem{
         rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
+    //Setter method for mecanum drive
     public void setVelocity(double leftstickx, double leftsticky, double rightstickx) {
         frontLeftPower = leftsticky + rightstickx + leftstickx;
         frontRightPower = leftsticky - rightstickx - leftstickx;
@@ -31,16 +32,19 @@ public class MecanumDrive extends Subsystem{
         rearLeftPower = leftsticky - rightstickx + leftstickx;
     }
 
-    public void stop(){
-        this.setVelocity(0,0,0);
-        this.update();
-    }
+    //Update method to set power to motors
     @Override
     public void update(){
         frontLeftMotor.setPower(frontLeftPower);
         frontRightMotor.setPower(frontRightPower);
         rearLeftMotor.setPower(rearLeftPower);
         rearRightMotor.setPower(rearRightPower);
+    }
+
+    //Deprecated stop method. See stop command
+    public void stop(){
+        this.setVelocity(0,0,0);
+        this.update();
     }
 
 }

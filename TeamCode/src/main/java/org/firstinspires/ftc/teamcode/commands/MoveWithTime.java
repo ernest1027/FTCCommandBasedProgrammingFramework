@@ -18,24 +18,10 @@ public class MoveWithTime implements Command{
         this.rightstickx = rightstickx;
     }
     @Override
-    public boolean runLoop() {
-        this.start();
-        while(!this.isComplete())
-        {
-            this.run();
-        }
-        if(!stopped)
-        {
-            this.end();
-        }
-        return true;
-    }
-    @Override
     public void start() {
         robot.mecanumDrive.setVelocity(this.leftstickx, this.leftsticky, this.rightstickx);
         startTime = robot.runtime.milliseconds();
     }
-
     @Override
     public void run() {
         robot.update();
@@ -58,10 +44,24 @@ public class MoveWithTime implements Command{
         stopped = true;
         robot.mecanumDrive.stop();
     }
+
     @Override
     public void reset() {
         stop();
         complete = false;
         stopped = false;
+    }
+    @Override
+    public boolean runLoop() {
+        this.start();
+        while(!this.isComplete())
+        {
+            this.run();
+        }
+        if(!stopped)
+        {
+            this.end();
+        }
+        return true;
     }
 }

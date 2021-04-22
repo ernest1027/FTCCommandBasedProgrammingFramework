@@ -15,35 +15,20 @@ public class Sequential implements Command{
     {
         this.commands = commands;
     }
-    @Override
-    public boolean runLoop() {
-        this.start();
-        while(!this.isComplete())
-        {
-            this.run();
-        }
-        if(!stopped)
-        {
-            this.end();
-        }
-        return true;
-    }
     //Runs the start function of the first command
     @Override
-    public void start() {
-    }
+    public void start() {commands.get(0).start();}
 
+    //Runs a command in the list based on the counter. Runs the start of the next command when the counter is incremented.
     @Override
     public void run() {
         if(commands.get(counter).isComplete())
         {
             counter++;
+            if(counter<commands.size())commands.get(counter).start();
         }
         commands.get(counter).run();
     }
-
-
-
 
     //The isComplete function checks the completion by comparing the counter to the length of the commands list
     @Override
@@ -62,11 +47,24 @@ public class Sequential implements Command{
         stopped = true;
         commands.get(counter).stop();
     }
+
     @Override
     public void reset() {
-        stop();
         complete = false;
         stopped = false;
         counter = 0;
+    }
+    @Override
+    public boolean runLoop() {
+        this.start();
+        while(!this.isComplete())
+        {
+            this.run();
+        }
+        if(!stopped)
+        {
+            this.end();
+        }
+        return true;
     }
 }
