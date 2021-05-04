@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.commands.Command;
+import org.firstinspires.ftc.teamcode.commands.MoveWithTime;
 import org.firstinspires.ftc.teamcode.commands.MoveWobbleGoalServoAndMoveWithTime;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class Control {
     Robot robot;
     HashMap buttonPreviousValue, buttonCurrentValue;
     MoveWobbleGoalServoAndMoveWithTime mwgsamwt;
+    MoveWithTime mwt;
     public Control(OpMode opMode, Robot robot)
     {
         this.opMode = opMode;
@@ -27,14 +29,17 @@ public class Control {
         buttonPreviousValue = new HashMap<String, Boolean>();
         buttonCurrentValue = new HashMap<String, Boolean>();
 
+        //Initialize button previous value
         buttonPreviousValue.put("a1", false);
         buttonPreviousValue.put("b1", false);
+        buttonPreviousValue.put("LB1",false);
+        buttonPreviousValue.put("RB1",false);
 
 
 
 
         mwgsamwt = new MoveWobbleGoalServoAndMoveWithTime(robot, 2000, 0,1,0,1,0.5);
-
+        mwt = new MoveWithTime(robot, 2000,0,1,0);
     }
     public void update()
     {
@@ -60,9 +65,14 @@ public class Control {
     {
         buttonCurrentValue.put("a1", gamepad1.a);
         buttonCurrentValue.put("b1", gamepad1.b);
+        buttonCurrentValue.put("LB1", gamepad1.left_bumper);
+        buttonCurrentValue.put("RB1", gamepad1.right_bumper);
 
         runCommandButton("a1",mwgsamwt);
         stopCommandButton("a1","b1",mwgsamwt);
+
+        runCommandButton("LB1",mwt);
+        stopCommandButton("LB1","RB1",mwt);
     }
     public void triggers()
     {
