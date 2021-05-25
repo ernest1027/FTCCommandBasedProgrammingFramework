@@ -55,6 +55,8 @@ public class Teleop extends OpMode
     private Robot robot;
     private Control control;
 
+
+    //Initializes robot and control class
     @Override
     public void init() {
         robot = new Robot(hardwareMap);
@@ -66,21 +68,20 @@ public class Teleop extends OpMode
     public void init_loop() {
     }
 
+    //See robot class
     @Override
     public void start() {
         robot.start();
     }
 
-
+    //Updates controls and robot classes
     @Override
     public void loop() {
         control.update();
         robot.update();
     }
 
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
+    //See robot class
     @Override
     public void stop() {
         robot.stop();

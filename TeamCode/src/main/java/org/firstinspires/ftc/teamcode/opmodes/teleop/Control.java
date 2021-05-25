@@ -37,10 +37,11 @@ public class Control {
 
 
 
-
+        //Initializes commands
         mwgsamwt = new MoveWobbleGoalServoAndMoveWithTime(robot, 2000, 0,1,0,1,0.5);
         mwt = new MoveWithTime(robot, 2000,0,1,0);
     }
+    //Calls update method on all parts of the controller
     public void update()
     {
         dpad();
@@ -49,11 +50,12 @@ public class Control {
         buttons();
         triggers();
     }
-
+    //Updates dpad and connected commands
     public void dpad()
     {
 
     }
+    //Updates joysticks and connected commands
     public void joysticks()
     {
         double drive = -gamepad1.left_stick_y;
@@ -61,28 +63,34 @@ public class Control {
         double strafe = gamepad1.left_stick_x;
         robot.mecanumDrive.setVelocity(drive, strafe, turn);
     }
+    //Updates buttons and connected commands
     public void buttons()
     {
+        //Updates current value for button
         buttonCurrentValue.put("a1", gamepad1.a);
         buttonCurrentValue.put("b1", gamepad1.b);
         buttonCurrentValue.put("LB1", gamepad1.left_bumper);
         buttonCurrentValue.put("RB1", gamepad1.right_bumper);
 
+        //Calls run and stop button queries for a button and its corresponding command
         runCommandButton("a1",mwgsamwt);
         stopCommandButton("a1","b1",mwgsamwt);
 
         runCommandButton("LB1",mwt);
         stopCommandButton("LB1","RB1",mwt);
     }
+    //Updates triggers and connected commands
     public void triggers()
     {
 
     }
+    //updates bumpers and connected commands
     public void bumpers()
     {
 
     }
 
+    //Binds button to running a command
     public void runCommandButton(String buttonName, Command command)
     {
         if(buttonPreviousValue.get(buttonName).equals(false) && buttonCurrentValue.get(buttonName).equals(true))
@@ -102,6 +110,7 @@ public class Control {
         }
     }
 
+    //Binds button to stopping a command
     public void stopCommandButton(String runButtonName, String stopButtonName, Command command)
     {
         if(buttonPreviousValue.get(stopButtonName).equals(false) && buttonCurrentValue.get(stopButtonName).equals(true) && buttonPreviousValue.get(runButtonName).equals(true))

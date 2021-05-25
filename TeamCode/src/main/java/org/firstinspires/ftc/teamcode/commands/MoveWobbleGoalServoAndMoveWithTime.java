@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class MoveWobbleGoalServoAndMoveWithTime implements Command{
     Parallel parallel;
+
+    //Initializes parallel command
     public MoveWobbleGoalServoAndMoveWithTime(Robot robot, double duration, double leftstickx, double leftsticky, double rightstickx, double position, double delay){
         MoveWithTime mwt = new MoveWithTime(robot, duration, leftstickx, leftsticky, rightstickx);
         MoveWobbleGoalServo mwgs = new MoveWobbleGoalServo(robot, position, delay);
@@ -14,6 +16,7 @@ public class MoveWobbleGoalServoAndMoveWithTime implements Command{
         commands.add(mwgs);
         parallel = new Parallel(commands);
     }
+
     @Override
     public void start() {
         parallel.start();

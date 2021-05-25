@@ -17,6 +17,8 @@ public class Robot{
     public MecanumDrive mecanumDrive;
     public WobbleGoalRelease wobbleGoalRelease;
 
+
+    //initializes all subsystems
     public Robot(HardwareMap map)
     {
         this.colourSensor = new ColourSensor(map);
@@ -36,7 +38,7 @@ public class Robot{
         wobbleGoalRelease.update();
     }
 
-    //Run at the end of the op mode
+    //Run at the end of the op mode. Stops all motors
     public void stop(){
         mecanumDrive.stop();
     }

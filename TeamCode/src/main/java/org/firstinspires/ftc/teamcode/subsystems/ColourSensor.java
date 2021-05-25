@@ -17,6 +17,8 @@ public class ColourSensor extends Subsystem{
     private double SCALE_FACTOR;
     private int relativeLayoutId;
     private View relativeLayout;
+
+    //Initializes colour sensor
     public ColourSensor(HardwareMap hardwareMap)
     {
         sensorColor = hardwareMap.get(ColorSensor.class, "colour");
@@ -42,7 +44,7 @@ public class ColourSensor extends Subsystem{
         });
     }
 
-    //State getter method that returns RGB values as an integer between 0 and 255 inclusive
+    //State getter method that returns RGB values as an integer between 0 and 255 inclusive in an integer array
     public int[] getColours(){
         int[] values = new int[3];
         values[0] = sensorColor.red();

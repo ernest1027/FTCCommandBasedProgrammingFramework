@@ -71,6 +71,7 @@ public class BlueSideThreeAndPark extends LinearOpMode {
 
         Robot robot = new Robot(hardwareMap);
 
+        //Initializes sequential command
         ArrayList<Command> commands = new ArrayList<Command>();
         commands.add(new MoveWithTime(robot,10000,0,1.0,0));
         commands.add(new MoveWobbleGoalServo(robot, 1.0, 500));
@@ -79,6 +80,7 @@ public class BlueSideThreeAndPark extends LinearOpMode {
 
         waitForStart();
 
+        //Run loop for sequential command
         robot.runtime.reset();
         mainSequential.start();
         while(opModeIsActive() && !mainSequential.isComplete())

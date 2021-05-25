@@ -15,32 +15,39 @@ public class Sequential implements Command{
     {
         this.commands = commands;
     }
-    //Runs the start function of the first command
+
+    //Runs the start method of the first command
     @Override
     public void start() {commands.get(0).start();}
 
-    //Runs a command in the list based on the counter. Runs the start of the next command when the counter is incremented.
+    //Runs a command in the list based on the counter. Runs the end of the current command and the
+    //start of the next command when the current command is complete.
     @Override
     public void run() {
-        if(commands.get(counter).isComplete())
-        {
-            counter++;
-            if(counter<commands.size())commands.get(counter).start();
-        }
+        if(isComplete())return;
         commands.get(counter).run();
+        if(commands.get(counter).isComplete()) {
+            counter++;
+            if (counter < commands.size()) {
+                commands.get(counter).start();
+                commands.get(counter).end();
+            }
+        }
     }
 
-    //The isComplete function checks the completion by comparing the counter to the length of the commands list
+    //The isComplete method checks the completion by comparing the counter to the length of the commands list
     @Override
     public boolean isComplete() {
         return complete = complete || counter == commands.size();
     }
 
+    //Runs the end method of the last command
     @Override
     public void end() {
-
+        commands.get(commands.size()-1).end();
     }
 
+    //Runs the stop method of the current command
     @Override
     public void stop() {
         complete = true;
@@ -48,12 +55,16 @@ public class Sequential implements Command{
         commands.get(counter).stop();
     }
 
+    //Resets the command so it can be used again
     @Override
     public void reset() {
         complete = false;
         stopped = false;
         counter = 0;
     }
+
+    //Deprecated
+    //Runs the whole parallel loop with a single function call
     @Override
     public boolean runLoop() {
         this.start();

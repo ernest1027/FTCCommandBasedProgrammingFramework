@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-//The command interface is contains the basic structure for a command. A command can be made for any state changes of the robot.
+//The command interface is contains the basic structure for a command.
+//A command can contain nested commands as long as it complies with the Command interface (See Parallel and Sequential classes)
 public interface Command{
 
     //Run at the start of a command

@@ -19,22 +19,7 @@ public class Parallel implements Command{
         completed = new boolean[commands.size()];
     }
 
-
-    @Override
-    public boolean runLoop() {
-        this.start();
-        while(!this.isComplete())
-        {
-            this.run();
-        }
-        if(!stopped)
-        {
-            this.end();
-        }
-        return true;
-    }
-
-    //Runs the start function of every command in the list
+    //Runs the start method of every command in the list
     @Override
     public void start() {
         for(int i = 0; i<commands.size(); i++)
@@ -44,8 +29,8 @@ public class Parallel implements Command{
     }
 
     /*
-        The run function runs every command in the list if it has not already been completed.
-        If the command is completed, the completed array is updated and the counter is incremented.
+       The run method runs every command in the list that has not already been completed.
+       If the command is completed, the completed array is updated and the counter is incremented.
      */
     @Override
     public void run() {
@@ -65,12 +50,16 @@ public class Parallel implements Command{
         return complete = complete || counter == commands.size();
     }
 
+    //Runs the end method of each individual command
     @Override
     public void end() {
-
+        for(int i = 0; i<commands.size(); i++)
+        {
+            commands.get(i).end();
+        }
     }
 
-    //Runs the stop function of each individual command
+    //Runs the stop method of each individual command
     @Override
     public void stop() {
         complete = true;
@@ -80,11 +69,29 @@ public class Parallel implements Command{
             commands.get(i).stop();
         }
     }
+
+    //Resets the command so it can be started again
     @Override
     public void reset() {
         complete = false;
         stopped = false;
         counter = 0;
         Arrays.fill(completed, false);
+    }
+
+    //DEPRECATED
+    //Runs the entire parallel command with one method call
+    @Override
+    public boolean runLoop() {
+        this.start();
+        while(!this.isComplete())
+        {
+            this.run();
+        }
+        if(!stopped)
+        {
+            this.end();
+        }
+        return true;
     }
 }

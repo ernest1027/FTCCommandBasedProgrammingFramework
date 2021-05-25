@@ -7,11 +7,12 @@ public class WobbleGoalRelease extends Subsystem{
     public Servo wobbleGoalServo;
     double position;
 
+    //Initializes servo
     public WobbleGoalRelease(HardwareMap map) {
         wobbleGoalServo = map.get(Servo.class, "wobble goal servo");
     }
 
-    //Setter method for wobble goal position
+    //State setter method for wobble goal position
     public void setPosition(double position)
     {
         this.position = position;
