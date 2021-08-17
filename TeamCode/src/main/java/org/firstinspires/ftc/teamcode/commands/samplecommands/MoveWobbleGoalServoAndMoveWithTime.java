@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.samplecommands;
 
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.commands.Command;
+import org.firstinspires.ftc.teamcode.commands.Parallel;
 
 import java.util.ArrayList;
 
-public class MoveWobbleGoalServoAndMoveWithTime implements Command{
+public class MoveWobbleGoalServoAndMoveWithTime implements Command {
     Parallel parallel;
 
     //Initializes parallel command

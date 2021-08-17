@@ -36,9 +36,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.Command;
-import org.firstinspires.ftc.teamcode.commands.MoveWithColourSensor;
-import org.firstinspires.ftc.teamcode.commands.MoveWithTime;
-import org.firstinspires.ftc.teamcode.commands.MoveWobbleGoalServo;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWithColourSensor;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWithTime;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWobbleGoalServo;
 import org.firstinspires.ftc.teamcode.commands.Sequential;
 import org.firstinspires.ftc.teamcode.Robot;
 

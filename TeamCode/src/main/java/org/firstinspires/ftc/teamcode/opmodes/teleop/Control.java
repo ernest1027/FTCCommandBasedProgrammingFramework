@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.commands.Command;
-import org.firstinspires.ftc.teamcode.commands.MoveWithTime;
-import org.firstinspires.ftc.teamcode.commands.MoveWobbleGoalServoAndMoveWithTime;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWithTime;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWobbleGoalServoAndMoveWithTime;
 
 import java.util.HashMap;
 

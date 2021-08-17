@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.samplecommands;
 
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.commands.Command;
 
-public class MoveWobbleGoalServo implements Command{
+public class MoveWobbleGoalServo implements Command {
     Robot robot;
     double position,delay, startingTime;
     boolean complete = false;

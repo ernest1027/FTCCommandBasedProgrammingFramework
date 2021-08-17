@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.samplecommands;
 
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.commands.Command;
 
-public class MoveWithColourSensor implements Command{
+public class MoveWithColourSensor implements Command {
 
     Robot robot;
     int R, G, B, tolerance;
