@@ -1,11 +1,6 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-<<<<<<< HEAD
-public interface Command{
 
-    public void run();
-    public boolean isComplete();
-=======
 //The command interface is contains the basic structure for a command.
 //A command can contain nested commands as long as it complies with the Command interface (See Parallel and Sequential classes)
 public interface Command{
@@ -20,7 +15,7 @@ public interface Command{
     public boolean isComplete();
 
     //Run at the end of a command
->>>>>>> ernest
+
     public void end();
 
     //Run if the command is to be stopped prematurely

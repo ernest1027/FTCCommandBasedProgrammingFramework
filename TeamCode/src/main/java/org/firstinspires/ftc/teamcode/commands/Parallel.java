@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-<<<<<<< HEAD
-public class Parallel {
-=======
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -97,5 +95,4 @@ public class Parallel implements Command{
         }
         return true;
     }
->>>>>>> ernest
 }

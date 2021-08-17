@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-<<<<<<< HEAD
-public class Sequential {
-=======
 import java.util.ArrayList;
 
 //A sequential command is a type of command that is used to run commands one after the other, or in other words sequentially.
@@ -81,5 +78,5 @@ public class Sequential implements Command{
         }
         return true;
     }
->>>>>>> ernest
+
 }
