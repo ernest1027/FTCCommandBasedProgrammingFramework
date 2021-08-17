@@ -15,6 +15,7 @@ public class MecanumDrive extends Subsystem{
     private double rearRightPower;
     private double rearLeftPower;
 
+    //Initializes mecanum drive
     public MecanumDrive(HardwareMap map) {
         frontLeftMotor = map.dcMotor.get("FL");
         frontRightMotor = map.dcMotor.get("FR");
@@ -24,6 +25,7 @@ public class MecanumDrive extends Subsystem{
         rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
+    //State setter method for mecanum drive
     public void setVelocity(double leftstickx, double leftsticky, double rightstickx) {
         frontLeftPower = leftsticky + rightstickx + leftstickx;
         frontRightPower = leftsticky - rightstickx - leftstickx;
@@ -31,12 +33,22 @@ public class MecanumDrive extends Subsystem{
         rearLeftPower = leftsticky - rightstickx + leftstickx;
     }
 
+<<<<<<< HEAD
+=======
+    //Update method to set power to motors
+>>>>>>> ernest
     @Override
     public void update(){
         frontLeftMotor.setPower(frontLeftPower);
         frontRightMotor.setPower(frontRightPower);
         rearLeftMotor.setPower(rearLeftPower);
         rearRightMotor.setPower(rearRightPower);
+    }
+
+    //State setter method to stop mecanum drive
+    public void stop(){
+        this.setVelocity(0,0,0);
+        this.update();
     }
 
 }

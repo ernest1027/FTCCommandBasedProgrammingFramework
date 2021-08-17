@@ -34,18 +34,16 @@ package org.firstinspires.ftc.teamcode.opmodes.auto;/* Copyright (c) 2017 FIRST.
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.view.View;
-import com.qualcomm.robotcore.util.Range;
+import org.firstinspires.ftc.teamcode.commands.Command;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWithColourSensor;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWithTime;
+import org.firstinspires.ftc.teamcode.commands.samplecommands.MoveWobbleGoalServo;
+import org.firstinspires.ftc.teamcode.commands.Sequential;
+import org.firstinspires.ftc.teamcode.Robot;
 
-import org.firstinspires.ftc.teamcode.subsystems.ColourSensor;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import java.util.ArrayList;
+
 
 
 /**
@@ -75,8 +73,15 @@ public class BlueSideThreeAndPark extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        mecanumDrive = new MecanumDrive(hardwareMap);
-        colourSensor = new ColourSensor(hardwareMap);
+        Robot robot = new Robot(hardwareMap);
+
+        //Initializes sequential command
+        ArrayList<Command> commands = new ArrayList<Command>();
+        commands.add(new MoveWithTime(robot,10000,0,1.0,0));
+        commands.add(new MoveWobbleGoalServo(robot, 1.0, 500));
+        commands.add(new MoveWithColourSensor(robot, 200, 200, 200, 10, 0, -0.5, 0));
+        Sequential mainSequential = new Sequential(commands);
+
 
         waitForStart();
         runtime.reset();
@@ -89,18 +94,15 @@ public class BlueSideThreeAndPark extends LinearOpMode {
         mecanumDrive.setVelocity(0,-0.5,0);
         mecanumDrive.update();
 
-        while(opModeIsActive()){
-           colourSensor.update();
 
-            if (colourSensor.getColours()[0] > 200 && colourSensor.getColours()[1] >200 && colourSensor.getColours()[2] >200) {
-                mecanumDrive.setVelocity(0,0,0);
-                mecanumDrive.update();
-            }
+        //Run loop for sequential command
+        robot.runtime.reset();
+        mainSequential.start();
+        while(opModeIsActive() && !mainSequential.isComplete())
+        {
+            mainSequential.run();
         }
-        mecanumDrive.setVelocity(0,0,0);
-        mecanumDrive.update();
-    }
-    public void moveHook(){
+        if(opModeIsActive())mainSequential.end();
 
     }
 
